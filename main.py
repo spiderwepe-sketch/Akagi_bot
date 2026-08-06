@@ -37,7 +37,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     await update.message.reply_text(response.text)
 
-if name == "main":
+if __name__ == "__main__":
     application = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
     echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message)
     application.add_handler(echo_handler)
