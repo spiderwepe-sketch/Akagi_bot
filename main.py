@@ -20,6 +20,8 @@ def run_dummy_server():
 
 threading.Thread(target=run_dummy_server, daemon=True).start()
 
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+
 # Берем API-ключ Gemini из переменных окружения Render
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
