@@ -20,9 +20,6 @@ def run_dummy_server():
 
 threading.Thread(target=run_dummy_server, daemon=True).start()
 
-# 2. Переменные авторизации
-TELEGRAM_TOKEN = "8800032771:AAFWu64ryPTZB5GWjvFy4ym7xMyKo7JthSQ"
-
 # Берем API-ключ Gemini из переменных окружения Render
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
@@ -31,8 +28,8 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_prompt = update.message.text
-    response = await client.aio.models.generate_content(
-        model="gemini-2.5-flash",
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
         contents=user_prompt
     )
     await update.message.reply_text(response.text)
