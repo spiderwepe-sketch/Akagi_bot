@@ -5,10 +5,13 @@ from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filte
 
 TELEGRAM_TOKEN = "8800032771:AAFWu64ryPTZB5GWjvFy4ym7xMyKo7JthSQ"
 
+# Создаем клиент вне функции
+client = genai.Client()
+
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_prompt = update.message.text
-    client = genai.Client()
-    response = client.models.generate_content(
+    # Используем асинхронный вызов client.aio
+    response = await client.aio.models.generate_content(
         model="gemini-2.5-flash",
         contents=user_prompt
     )
