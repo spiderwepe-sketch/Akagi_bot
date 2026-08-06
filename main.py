@@ -4,7 +4,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filters
 TELEGRAM_TOKEN = "8800032771:AAFWu64ryPTZB5GWjvFy4ym7xMyKo7JthSQ"
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-user_prompt = update.message.text
+  user_prompt = update.message.text
 client = genai.Client()
 response = client.models.generate_content(
 model="gemini-2.5-flash",
